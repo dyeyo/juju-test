@@ -58,14 +58,13 @@ export class ListCharactersComponent {
       name: this.formFilter?.get('filter')?.value || '',
       gender: this.formFilter?.get('gender')?.value || '',
     };
-    this.charatesServices.getData(filters, page).subscribe({
+    this.charatesServices.getData(filters, page)?.subscribe({
       next: (data: any) => {
         this.charactes = data.results;
         this.info = data.info;
         this.loading = false;
       },
       error: (err) => {
-        console.log(err);
         this.loading = false;
       },
     });
