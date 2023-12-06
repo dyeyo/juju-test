@@ -1,0 +1,108 @@
+<div class="container mx-auto px-8">
+  <div class="bg-white rounded-lg shadow-xl pb-8">
+    <div class="w-full h-[250px]">
+      <svg
+        [routerLink]="['/']"
+        style="position: fixed; color: #fff"
+        class="w-10 h-10 ml-5 mt-4 text-white-800 dark:text-white"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 14 10"
+      >
+        <path
+          fill="red"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M13 5H1m0 0 4 4M1 5l4-4"
+        />
+        <title>Atras</title>
+      </svg>
+
+      <img
+        src="https://img.freepik.com/fotos-premium/panorama-escena-espacio-planetas-estrellas-galaxias-plantilla-banner-muchas-nebulosas-galaxias-espacio-muchos-anos-luz-distancia-universo-profundo-estructura-gran-escala-renderizada-3d_91497-7933.jpg?w=1380"
+        class="w-full h-full rounded-tl-lg rounded-tr-lg"
+      />
+    </div>
+    <div class="flex flex-col items-center -mt-20">
+      <img
+        src="{{ character.image }}"
+        class="w-40 border-4 border-white rounded-full"
+      />
+      <div class="flex items-center space-x-2 mt-2">
+        <p class="text-2xl">{{ character.name }}</p>
+        <span class="bg-blue-500 rounded-full p-1" title="Verified">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="text-gray-100 h-2.5 w-2.5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="4"
+              d="M5 13l4 4L19 7"
+            ></path>
+          </svg>
+        </span>
+      </div>
+      <p class="text-gray-700">{{ character.species }}</p>
+      <p class="text-sm text-gray-500">{{ character.location.name }}</p>
+    </div>
+  </div>
+
+  <div class="my-4 flex flex-row flex-wrap gap-3">
+    <div class="flex-1 bg-white h-80 rounded-lg shadow-xl p-8">
+      <h4 class="text-xl text-gray-900 font-bold">Infromación del personaje</h4>
+      <ul class="mt-2 text-gray-700">
+        <li class="flex border-y py-2">
+          <span class="font-bold w-24">Nombre completo:</span>
+          <span class="text-gray-700">{{ character.name }}</span>
+        </li>
+        <li class="flex border-b py-2">
+          <span class="font-bold w-24">Especie:</span>
+          <span class="text-gray-700">{{
+            character.speciese || "Tierra"
+          }}</span>
+        </li>
+        <li class="flex border-b py-2">
+          <span class="font-bold w-24">Genero:</span>
+          <span class="text-gray-700">{{ character.gender }}</span>
+        </li>
+        <li class="flex border-b py-2">
+          <span class="font-bold w-24">Estado:</span>
+          <span class="text-gray-700">{{ character.status }}</span>
+        </li>
+      </ul>
+    </div>
+    <div class="flex-1 h-80 bg-white rounded-lg shadow-xl p-8">
+      <h4 class="text-xl text-gray-900 font-bold">Capitulos</h4>
+      <div class="relative px-4 overflow-x-auto">
+        <div
+          class="flex items-center w-full my-6 -ml-1.5"
+          *ngFor="
+            let item of character.episode
+              | paginate : { itemsPerPage: 3, currentPage: p }
+          "
+        >
+          <div class="w-1/12 z-10">
+            <div class="w-3.5 h-3.5 bg-blue-600 rounded-full"></div>
+          </div>
+          <div class="w-11/12">
+            <a href="{{ item }}" target="_blank" class="text-sm">{{ item }}.</a>
+            <p class="text-xs text-gray-500">1 hora duración</p>
+          </div>
+        </div>
+        <pagination-controls
+          previousLabel="Anterior"
+          nextLabel="Siguiente"
+          (pageChange)="p = $event"
+        ></pagination-controls>
+      </div>
+    </div>
+  </div>
+</div>
