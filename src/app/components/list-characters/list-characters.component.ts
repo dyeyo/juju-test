@@ -74,11 +74,21 @@ export class ListCharactersComponent {
     if (this.currentPage === 0) {
       return;
     }
+     window.scroll({
+           top: 0,
+           left: 0,
+           behavior: 'smooth'
+    });
     this.currentPage -= 1;
     this.getDataCharacters(this.currentPage);
   }
 
   addPage(page: number) {
+     window.scroll({
+           top: 0,
+           left: 0,
+           behavior: 'smooth'
+    });
     this.currentPage += page;
     this.getDataCharacters(this.currentPage);
   }
